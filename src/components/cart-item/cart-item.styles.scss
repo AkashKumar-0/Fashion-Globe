@@ -1,0 +1,36 @@
+.cart-item-container {
+  width: 100%;
+  display: flex;
+  height: 80px;
+  margin-bottom: 15px;
+
+  img {
+    width: 30%;
+  }
+
+  .item-details {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10px 20px;
+
+    h1 {
+      font-size: 0.8em;
+    }
+  }
+  .incDec {
+    position: relative;
+    display: flex;
+    column-gap: 10px;
+    right: 10px;
+    top: 20px;
+    align-items: flex-start;
+    justify-content: center;
+
+    span {
+      cursor: pointer;
+    }
+  }
+}
