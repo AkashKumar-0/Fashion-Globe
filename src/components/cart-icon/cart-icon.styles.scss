@@ -11,7 +11,9 @@
     width: 24px;
     height: 24px;
   }
-
+  .shopping-icon:active {
+    transform: scale(1.09);
+  }
   .item-count {
     position: absolute;
     font-size: 10px;

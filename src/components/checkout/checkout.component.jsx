@@ -11,7 +11,7 @@ const Checkout = () => {
   const { cartData, cartTotal } = useContext(CartContext);
   const Navigate = useNavigate();
   /**
-   * @param {chenge Route} if nothing in the cart themn change route to shop
+   * @param {change Route} if nothing in the cart then change route to shop
    */
   useEffect(() => {
     cartData.length === 0 && Navigate('/shop');
