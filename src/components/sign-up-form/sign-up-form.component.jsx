@@ -1,17 +1,17 @@
-import { useState } from "react";
-import FormHelper from "../form-helper/form-helper.component";
+import { useState } from 'react';
+import FormHelper from '../form-helper/form-helper.component';
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
-} from "../../utils/firebase/firebase.utils";
-import "./sign-up-form.styles.scss";
-import Button from "../button/button.component";
+} from '../../utils/firebase/firebase.utils';
+import { SignUpContainer } from './sign-up-form.styles.jsx';
+import Button from '../button/button.component';
 
 const defaultFormFields = {
-  displayName: "",
-  email: "",
-  password: "",
-  confirmPssword: "",
+  displayName: '',
+  email: '',
+  password: '',
+  confirmPssword: '',
 };
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
@@ -25,7 +25,7 @@ const SignUpForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (password !== confirmPssword) {
-      alert("please make sure that Password and confirm password is same :)");
+      alert('please make sure that Password and confirm password is same :)');
       return;
     }
 
@@ -42,17 +42,17 @@ const SignUpForm = () => {
       resetFormFields();
     } catch (err) {
       switch (err) {
-        case "auth/email-already-in-use":
-          alert("auth/email-already-in-use");
+        case 'auth/email-already-in-use':
+          alert('auth/email-already-in-use');
           break;
-        case "auth/invalid-email":
-          alert("auth/invalid-email");
+        case 'auth/invalid-email':
+          alert('auth/invalid-email');
           break;
 
         default:
           break;
       }
-      console.log("user creation encountered an error", err);
+      console.log('user creation encountered an error', err);
     }
   };
   const handleChange = (event) => {
@@ -61,7 +61,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="sign-up-container">
+    <SignUpContainer>
       <h2>Don't Have an Account</h2>
       <span>Sign Up with your email and password</span>
       <form onSubmit={handleSubmit}>
@@ -102,7 +102,7 @@ const SignUpForm = () => {
 
         <Button type="submit">Sign In</Button>
       </form>
-    </div>
+    </SignUpContainer>
   );
 };
 export default SignUpForm;

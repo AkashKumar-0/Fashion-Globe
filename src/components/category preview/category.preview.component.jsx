@@ -1,19 +1,25 @@
-import './category.preview.styles.scss';
+import {
+  CatPreviewCtr,
+  PreviewTitle,
+  Preview,
+} from './category.preview.styles.jsx';
+
 import ProductCard from '../product card/product-card.component';
+
 const CategoryPreview = ({ title, products }) => {
   return (
-    <div className="category-preview-container">
-      <h1 className="preview-title">
+    <CatPreviewCtr>
+      <PreviewTitle>
         <span>{title.toUpperCase()}</span>
-      </h1>
-      <div className="preview">
+      </PreviewTitle>
+      <Preview>
         {products
           .filter((_, idx) => idx < 4)
           .map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-      </div>
-    </div>
+      </Preview>
+    </CatPreviewCtr>
   );
 };
 

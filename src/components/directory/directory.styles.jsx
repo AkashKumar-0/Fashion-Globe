@@ -1,6 +1,8 @@
-.directory-container {
+import styled from 'styled-components';
+
+export const DirectoryContainer = styled.div`
   width: 100%;
   display: grid;
   transform: translateY(80px);
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
+`;

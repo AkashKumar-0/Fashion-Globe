@@ -3,7 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../../context/cart.context';
 import CheckoutItem from './checkout route/checkout.route.component';
 
-import './checkout.styles.scss';
+import {
+  CheckoutCtr,
+  CheckoutHeader,
+  Total,
+  HeaderBlock,
+} from './checkout.styles.jsx';
 
 const headerData = [' Product', 'Discription', 'Quantity', 'Price', 'Remove'];
 
@@ -18,30 +23,21 @@ const Checkout = () => {
   }, [Navigate, cartData.length]);
 
   return (
-    <div className="checkout-container ">
-      <div className="checkout-header">
+    <CheckoutCtr>
+      <CheckoutHeader>
         {headerData.map((el, i) => {
           return (
-            <div key={i} className="header-block">
+            <HeaderBlock key={i}>
               <span>{el}</span>
-            </div>
+            </HeaderBlock>
           );
         })}
-      </div>
+      </CheckoutHeader>
       {cartData.map((card) => (
         <CheckoutItem key={card.id} card={card} />
       ))}
-      <span className="total">Total : {cartTotal}</span>
-    </div>
+      <Total>Total : {cartTotal}</Total>
+    </CheckoutCtr>
   );
 };
 export default Checkout;
-/**
- * {headerData.map((el, i) => {
-          return (
-            <div key={i} className="header-block">
-              <span>{el}</span>
-            </div>
-          );
-        })}
- */

@@ -1,4 +1,12 @@
-import './checkout.route.styles.scss';
+import {
+  CheckoutItemContainer,
+  ImageContainer,
+  BaseSpan,
+  Quantity,
+  Arrow,
+  Value,
+  RemoveButton,
+} from './checkout.route.styles.jsx';
 import { CartContext } from '../../../context/cart.context';
 import { useContext } from 'react';
 
@@ -11,28 +19,20 @@ const CheckoutItem = ({ card }) => {
     const index = cartData.filter((el) => card.id !== el.id);
     setCartData(index);
   };
-
   return (
-    <div className="checkout-item-container">
-      <div className="image-container">
-        <img src={imageUrl} alt={name} />
-      </div>
-      <span className="name">{name}</span>
-      <div className="quantity">
-        <span className="arrow" onClick={() => removeDataFromCard(card)}>
-          &#10096;
-        </span>
-        <span className="value">{quantity}</span>
-        <span className="arrow" onClick={() => addDataToCart(card)}>
-          &#10095;
-        </span>
-      </div>
-      <span className="price">&#36; {price}</span>
-
-      <div className="remove-button " onClick={handleRemove}>
-        &#x2718;
-      </div>
-    </div>
+    <CheckoutItemContainer>
+      <ImageContainer>
+        <img src={imageUrl} alt={`${name}`} />
+      </ImageContainer>
+      <BaseSpan> {name} </BaseSpan>
+      <Quantity>
+        <Arrow onClick={() => removeDataFromCard(card)}>&#10094;</Arrow>
+        <Value>{quantity}</Value>
+        <Arrow onClick={() => addDataToCart(card)}>&#10095;</Arrow>
+      </Quantity>
+      <BaseSpan>&#36; {price}</BaseSpan>
+      <RemoveButton onClick={handleRemove}>&#x2718;</RemoveButton>
+    </CheckoutItemContainer>
   );
 };
 export default CheckoutItem;

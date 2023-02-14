@@ -9,9 +9,10 @@ import {
 /**
  * @UserContext {@return value {object}} from context
  */
-import Button from '../button/button.component';
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 
-import './sign-in-form.styles.scss';
+import { SignInContainer, BtnFlex } from './sign-in-form.styles.jsx';
+
 const defaultFormFields = {
   email: '',
   password: '',
@@ -66,7 +67,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="sign-in-container">
+    <SignInContainer>
       <h2>Sign IN </h2>
       <form onSubmit={handleSubmit}>
         <FormHelper
@@ -86,30 +87,19 @@ const SignInForm = () => {
           value={password}
           required
         />
-        <div className="btn-flex">
+        <BtnFlex>
           <Button type="submit">Sign In</Button>
-          <Button type="button" buttonType="google" onClick={signInWithGoogle}>
+          <Button
+            type="button"
+            buttonType={BUTTON_TYPE_CLASSES.google}
+            onClick={signInWithGoogle}
+          >
             Google Sign-In
           </Button>
-        </div>
+        </BtnFlex>
       </form>
-    </div>
+    </SignInContainer>
   );
 };
-export default SignInForm;
 
-/**
- * @Form_Helper_efficient_way
- *      <FormHelper
-          label="Email"
-          otherProps = {{   //this is object thats's why double curly bracket
-            type:"email",
-            onChange:{handleChange},
-            name:"email",
-            value:{email},
-            required: true,
-          }}
-         
-        />
- * 
- */
+export default SignInForm;

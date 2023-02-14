@@ -1,4 +1,4 @@
-import './category.styles.scss';
+import { CatParamCtr, ParamTitle } from './category.styles.jsx';
 import { CategoriesContext } from '../../context/categories.context';
 import { useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
@@ -11,18 +11,18 @@ const Category = () => {
 
   useEffect(() => {
     setProducts(categoriesMap[category]);
-    console.log(categoriesMap[category]);     
+    console.log(categoriesMap[category]);
   }, [categoriesMap, category]);
 
   return (
     <>
-      <div className="category-param-title">{category.toUpperCase()}</div>
-      <div className="category-param-container">
+      <ParamTitle>{category.toUpperCase()}</ParamTitle>
+      <CatParamCtr>
         {products &&
           products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-      </div>
+      </CatParamCtr>
     </>
   );
 };
