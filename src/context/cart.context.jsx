@@ -21,10 +21,10 @@ const removeCartData = (cartData, productToRemove) => {
 
   //splice(index, no of element from that index)
   if (productToRemove.quantity === 1) {
-    console.log(index, cartData);
+    // console.log(index, cartData);
     cartData.splice(index, 1);
     delete productToRemove.quantity;
-    console.log(cartData);
+    // console.log(cartData);
   } else {
     productToRemove.quantity -= 1;
   }
