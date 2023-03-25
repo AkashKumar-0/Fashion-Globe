@@ -3,18 +3,15 @@ import {
   PreviewTitle,
   Preview,
 } from './category.preview.styles.jsx';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 import ProductCard from '../product card/product-card.component';
 
 const CategoryPreview = ({ title, products }) => {
-  const navigate = useNavigate();
-  const onNavigateHandler = () => {
-    navigate(title);
-  };
   return (
     <CatPreviewCtr>
-      <PreviewTitle onClick={onNavigateHandler}>
-        <span>{title.toUpperCase()}</span>
+      <PreviewTitle>
+        <Link to={title}>{title.toUpperCase()}</Link>
       </PreviewTitle>
       <Preview>
         {products

@@ -13,6 +13,7 @@ export const PreviewTitle = styled.div`
   letter-spacing: 4px;
   font-weight: 900;
 `;
+
 export const Preview = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
