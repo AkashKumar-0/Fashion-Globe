@@ -12,12 +12,12 @@ import { useContext } from 'react';
 
 const CheckoutItem = ({ card }) => {
   const { name, imageUrl, price, quantity } = card;
-  const { cartData, setCartData, addDataToCart, removeDataFromCard } =
+  const { cartData, addDataToCart, removeDataFromCard, clearProductFromData } =
     useContext(CartContext);
 
   const handleRemove = () => {
-    const index = cartData.filter((el) => card.id !== el.id);
-    setCartData(index);
+    const newlyData = cartData.filter((el) => card.id !== el.id);
+    clearProductFromData(newlyData);
   };
   return (
     <CheckoutItemContainer>

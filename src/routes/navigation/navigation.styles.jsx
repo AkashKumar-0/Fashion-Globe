@@ -15,6 +15,10 @@ export const LogoContainer = styled(Link)`
   width: 70px;
   display: flex;
   align-items: center;
+
+  &:hover {
+    filter: drop-shadow(0 0 2em #333);
+  }
 `;
 export const NavLinksContainer = styled.div`
   width: fit-content;

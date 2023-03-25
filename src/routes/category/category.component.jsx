@@ -1,17 +1,22 @@
 import { CatParamCtr, ParamTitle } from './category.styles.jsx';
-import { CategoriesContext } from '../../context/categories.context';
+
 import { useParams } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectCategoriesMap } from '../../store/categories/categories.selector.js';
+import { useEffect, useState } from 'react';
 import ProductCard from '../../components/product card/product-card.component';
 
 const Category = () => {
   const { category } = useParams();
-  const { categoriesMap } = useContext(CategoriesContext);
-  const [products, setProducts] = useState(categoriesMap[category]);
+  console.log('render/re-rendering category component');
 
+  const categoriesMap = useSelector(selectCategoriesMap);
+
+  const [products, setProducts] = useState(categoriesMap[category]);
   useEffect(() => {
     setProducts(categoriesMap[category]);
     // console.log(categoriesMap[category]);
+    console.log('effect fire calling setProducts');
   }, [categoriesMap, category]);
 
   return (
