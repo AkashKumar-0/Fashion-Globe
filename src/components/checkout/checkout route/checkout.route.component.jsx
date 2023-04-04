@@ -1,3 +1,10 @@
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addDataToCart,
+  removeDataFromCard,
+  clearProductFromCart,
+} from '../../../store/cart/cart.action.js';
+import { selectCartData } from '../../../store/cart/cart.selector.js';
 import {
   CheckoutItemContainer,
   ImageContainer,
@@ -7,18 +14,16 @@ import {
   Value,
   RemoveButton,
 } from './checkout.route.styles.jsx';
-import { CartContext } from '../../../context/cart.context';
-import { useContext } from 'react';
 
 const CheckoutItem = ({ card }) => {
   const { name, imageUrl, price, quantity } = card;
-  const { cartData, addDataToCart, removeDataFromCard, clearProductFromData } =
-    useContext(CartContext);
+  const cartData = useSelector(selectCartData);
+  const dispatch = useDispatch();
 
-  const handleRemove = () => {
-    const newlyData = cartData.filter((el) => card.id !== el.id);
-    clearProductFromData(newlyData);
-  };
+  const addDataHandler = () => dispatch(addDataToCart(cartData, card));
+  const removeDataHandler = () => dispatch(removeDataFromCard(cartData, card));
+  const clearDataHandler = () => dispatch(clearProductFromCart(cartData, card));
+
   return (
     <CheckoutItemContainer>
       <ImageContainer>
@@ -26,12 +31,12 @@ const CheckoutItem = ({ card }) => {
       </ImageContainer>
       <BaseSpan> {name} </BaseSpan>
       <Quantity>
-        <Arrow onClick={() => removeDataFromCard(card)}>&#10094;</Arrow>
+        <Arrow onClick={removeDataHandler}>&#10094;</Arrow>
         <Value>{quantity}</Value>
-        <Arrow onClick={() => addDataToCart(card)}>&#10095;</Arrow>
+        <Arrow onClick={addDataHandler}>&#10095;</Arrow>
       </Quantity>
       <BaseSpan>&#36; {price}</BaseSpan>
-      <RemoveButton onClick={handleRemove}>&#x2718;</RemoveButton>
+      <RemoveButton onClick={clearDataHandler}>&#x2718;</RemoveButton>
     </CheckoutItemContainer>
   );
 };

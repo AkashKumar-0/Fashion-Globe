@@ -1,6 +1,10 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CartContext } from '../../context/cart.context';
+import { useSelector } from 'react-redux';
+import {
+  selectCartData,
+  selectCartTotal,
+} from '../../store/cart/cart.selector';
 import CheckoutItem from './checkout route/checkout.route.component';
 
 import {
@@ -13,7 +17,9 @@ import {
 const headerData = [' Product', 'Discription', 'Quantity', 'Price', 'Remove'];
 
 const Checkout = () => {
-  const { cartData, cartTotal } = useContext(CartContext);
+  const cartData = useSelector(selectCartData);
+  const cartTotal = useSelector(selectCartTotal);
+
   const Navigate = useNavigate();
   /**
    * @param {change Route} if nothing in the cart then change route to shop

@@ -8,7 +8,6 @@ import ProductCard from '../../components/product card/product-card.component';
 
 const Category = () => {
   const { category } = useParams();
-  console.log('render/re-rendering category component');
 
   const categoriesMap = useSelector(selectCategoriesMap);
 
@@ -16,7 +15,6 @@ const Category = () => {
   useEffect(() => {
     setProducts(categoriesMap[category]);
     // console.log(categoriesMap[category]);
-    console.log('effect fire calling setProducts');
   }, [categoriesMap, category]);
 
   return (

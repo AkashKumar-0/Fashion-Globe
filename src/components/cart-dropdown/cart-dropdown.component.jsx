@@ -1,11 +1,13 @@
 import './cart-dropdown.styles.jsx';
-import { useContext } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
-import { CartContext } from '../../context/cart.context';
+import { useSelector, useDispatch } from 'react-redux';
+
 import CartItem from '../cart-item/cart-item.component';
 import Button from '../button/button.component';
-
+import { selectCartData } from '../../store/cart/cart.selector.js';
+import { setIsCartOpen } from '../../store/cart/cart.action.js';
 import {
   CartDropdownContainer,
   EmptyMessage,
@@ -13,11 +15,11 @@ import {
 } from './cart-dropdown.styles';
 
 const CartDropdown = () => {
-  const { cartData, setIsCartOpen } = useContext(CartContext);
+  const cartData = useSelector(selectCartData);
   const navigation = useNavigate();
-
+  const dispatch = useDispatch();
   const gotoChecout = () => {
-    setIsCartOpen(false);
+    dispatch(setIsCartOpen(false));
     navigation('/checkout');
   };
 
@@ -27,10 +29,9 @@ const CartDropdown = () => {
         <EmptyMessage>No items in the cart</EmptyMessage>
       )}
       <CartItems>
-        {cartData.map((item) => {
-          // console.log('id', item.id);
-          return <CartItem key={item.id} cartData={item} />;
-        })}
+        {cartData.map((item) => (
+          <CartItem key={item.id} cartData={item} />
+        ))}
       </CartItems>
       <Button disabled={cartData.length === 0} onClick={gotoChecout}>
         Go To Checkout <span>➠</span>

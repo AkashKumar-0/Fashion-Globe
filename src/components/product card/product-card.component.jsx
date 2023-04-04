@@ -1,17 +1,18 @@
 import { ProductCardCtr, Footer } from './product-card.styles.jsx';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
-
-import { CartContext } from '../../context/cart.context';
-import { useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addDataToCart } from '../../store/cart/cart.action.js';
+import { selectCartData } from '../../store/cart/cart.selector.js';
 
 const ProductCard = ({ product }) => {
-  const { addDataToCart } = useContext(CartContext);
+  const { name, price, imageUrl } = product;
+  const cartData = useSelector(selectCartData);
+  const dispatch = useDispatch();
 
   const addProductToCart = () => {
-    addDataToCart(product);
+    dispatch(addDataToCart(cartData, product));
   };
 
-  const { name, price, imageUrl } = product;
   return (
     <ProductCardCtr>
       <img className="image" src={imageUrl} alt={`${name}`} />
