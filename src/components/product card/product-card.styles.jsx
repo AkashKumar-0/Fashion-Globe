@@ -3,53 +3,52 @@ import styled from 'styled-components';
 export const ProductCardCtr = styled.div`
   width: 100%;
   display: flex;
+  height: 330px;
   flex-direction: column;
-  height: 350px;
   align-items: center;
+  // border: 1px solid red;
   position: relative;
-  margin-bottom: 40px;
   img {
-    width: 80%;
-    height: 100%;
+    width: 55%;
+    border-radius: 50%;
+    height: 50%;
     object-fit: cover;
     margin-bottom: 5px;
   }
 
-  button {
-    width: 80%;
-    opacity: 0.7;
+  .carticon {
+    border-radius: 5px;
+    width: 50px;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    box-sizing: border-box;
     position: absolute;
-    top: 255px;
+    background: transparent;
+    top: 120px;
     display: none;
   }
 
   &:hover {
     img {
-      opacity: 0.8;
+      opacity: 0.6;
     }
 
-    button {
-      opacity: 0.85;
+    .carticon {
       display: flex;
+      transition: all 0.5s ease;
+      &:hover {
+        transform: scale(1.2);
+      }
     }
   }
 `;
+
 export const Footer = styled.footer`
-  width: 80%;
-  height: 5%;
+  width: 70%;
+  height: auto;
+  // border: 1px solid red;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   font-size: 18px;
-
-  & :first-child {
-    width: 90%;
-    height: 30px;
-    // border: 1px solid red;
-    // margin-bottom: 15px;
-  }
-
-  & :last-child {
-    width: 10%;
-    // border: 1px solid red;
-  }
 `;

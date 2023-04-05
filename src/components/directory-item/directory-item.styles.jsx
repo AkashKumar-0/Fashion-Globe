@@ -8,40 +8,34 @@ export const BackgroundImage = styled.div`
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 `;
 export const DirectoryBody = styled.div`
-  height: 90px;
-  padding: 0 25px;
+  height: 60px;
+  width: auto-fill;
+  transform: translateY(-55px);
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  border: 1px solid black;
+  top: 150px;
+  border-top-left-radius: 5px 5px;
+  border-top-right-radius: 5px 5px;
+  justify-content: space-evenly;
   background-color: white;
   opacity: 0.7;
-  position: absolute;
+  // position: inherit;
 
   h2 {
     font-weight: bold;
-    margin: 0 6px 0;
     font-size: 22px;
     color: #4a4a4a;
     text-transform: capitalize;
   }
-
-  p {
-    font-weight: lighter;
-    font-size: 16px;
-  }
 `;
 
 export const DirectoryContainer = styled.div`
-  min-width: 30%;
-  height: 240px;
-  flex: 1 1 auto;
+  min-width: 10%;
+  height: 230px;
+  border-radius: 5px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid black;
-  margin: 0 7.5px 15px;
+  flex-direction: column;
+  margin: 45px 7.5px 15px;
   overflow: hidden;
 
   &:hover {

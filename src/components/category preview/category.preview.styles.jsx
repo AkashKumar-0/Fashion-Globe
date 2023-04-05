@@ -16,8 +16,8 @@ export const PreviewTitle = styled.div`
 
 export const Preview = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  column-gap: 30px;
+  grid-template-columns: repeat(4, minmax(300px, 1fr));
+  column-gap: 200px;
   margin: 50px;
   row-gap: 30px;
 `;
