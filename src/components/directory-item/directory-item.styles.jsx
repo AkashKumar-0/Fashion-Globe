@@ -5,6 +5,8 @@ export const BackgroundImage = styled.div`
   height: 100%;
   background-size: cover;
   background-position: center;
+  filter: drop-shadow(0.1em 0.1em 0.1em #444);
+
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 `;
 export const DirectoryBody = styled.div`

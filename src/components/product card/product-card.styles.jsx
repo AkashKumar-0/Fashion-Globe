@@ -1,17 +1,22 @@
 import styled from 'styled-components';
 
 export const ProductCardCtr = styled.div`
-  width: 100%;
+  width: 80%;
+  min-width: 10%;
+  height: 200px;
   display: flex;
-  height: 330px;
   flex-direction: column;
   align-items: center;
-  // border: 1px solid red;
   position: relative;
+  border-radius: 5px;
+  border: 1px dashed rgba(5, 10, 10, 0.1);
+  padding: 35px;
+  margin: 2.5rem;
   img {
-    width: 55%;
-    border-radius: 50%;
-    height: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    filter: drop-shadow(0.1em 0.1em 0.1em #444);
     object-fit: cover;
     margin-bottom: 5px;
   }
@@ -25,7 +30,7 @@ export const ProductCardCtr = styled.div`
     box-sizing: border-box;
     position: absolute;
     background: transparent;
-    top: 120px;
+    top: 90px;
     display: none;
   }
 
@@ -47,8 +52,7 @@ export const ProductCardCtr = styled.div`
 export const Footer = styled.footer`
   width: 70%;
   height: auto;
-  // border: 1px solid red;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   font-size: 18px;
 `;
