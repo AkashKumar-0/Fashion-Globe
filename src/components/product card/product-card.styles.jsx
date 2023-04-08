@@ -50,9 +50,9 @@ export const ProductCardCtr = styled.div`
 `;
 
 export const Footer = styled.footer`
-  width: 70%;
+  width: 100%;
   height: auto;
   display: flex;
-  justify-content: space-between;
-  font-size: 18px;
+  justify-content: space-evenly;
+  font-size: 0.9em;
 `;
