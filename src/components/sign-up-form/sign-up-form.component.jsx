@@ -1,11 +1,10 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import FormHelper from '../form-helper/form-helper.component';
-import {
-  createAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth,
-} from '../../utils/firebase/firebase.utils';
+
 import { SignUpContainer } from './sign-up-form.styles.jsx';
 import Button from '../button/button.component';
+import { signUpStart } from '../../store/user/user.action';
 
 const defaultFormFields = {
   displayName: '',
@@ -16,43 +15,33 @@ const defaultFormFields = {
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPssword } = formFields;
-
   // console.log(formFields);
+
+  const dispatch = useDispatch();
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
+
+  // handling the submission of sign up procedure
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     if (password !== confirmPssword) {
       alert('please make sure that Password and confirm password is same :)');
       return;
     }
 
     try {
-      const { user } = await createAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-      /**
-       * now we have to store this in our datastore database
-       */
-      await createUserDocumentFromAuth(user, { displayName });
-
+      dispatch(signUpStart(email, password, displayName));
       resetFormFields();
     } catch (err) {
-      switch (err) {
-        case 'auth/email-already-in-use':
-          alert('auth/email-already-in-use');
-          break;
-        case 'auth/invalid-email':
-          alert('auth/invalid-email');
-          break;
-
-        default:
-          break;
+      if (err.code === 'auth/email-already-in-use') {
+        alert('cannot create user, email already in use');
+      } else {
+        console.log('user creation encountered an error', err);
       }
-      console.log('user creation encountered an error', err);
     }
   };
   const handleChange = (event) => {
@@ -100,7 +89,7 @@ const SignUpForm = () => {
           required
         />
 
-        <Button type="submit">Sign In</Button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </SignUpContainer>
   );

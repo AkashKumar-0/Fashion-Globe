@@ -1,17 +1,14 @@
 import { useState } from 'react';
-import FormHelper from '../form-helper/form-helper.component';
-import {
-  signInWithGooglePopup,
-  // eslint-disable-next-line no-unused-vars
-  createUserDocumentFromAuth,
-  signInAuthUserWithEmailAndPassword,
-} from '../../utils/firebase/firebase.utils';
-/**
- * @UserContext {@return value {object}} from context
- */
-import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
-
+import { useDispatch } from 'react-redux';
 import { SignInContainer, BtnFlex } from './sign-in-form.styles.jsx';
+
+import {
+  emailSignInStart,
+  googleSignInStart,
+} from '../../store/user/user.action';
+
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
+import FormHelper from '../form-helper/form-helper.component';
 
 const defaultFormFields = {
   email: '',
@@ -24,26 +21,20 @@ const SignInForm = () => {
 
   // console.log(formFields);
 
+  const dispatch = useDispatch();
+
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
     // console.log("reset formfield");
   };
 
-  const signInWithGoogle = async () => {
-    try {
-      await signInWithGooglePopup();
-      // console.log("google signin ", user);
-      // createUserProfileDocument(response);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const signInWithGoogle = async () => dispatch(googleSignInStart());
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       resetFormFields();
-      await signInAuthUserWithEmailAndPassword(email, password);
+      dispatch(emailSignInStart(email, password));
       // console.log("sign in with email and pass -> ", user);
 
       resetFormFields();

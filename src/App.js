@@ -2,12 +2,6 @@ import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-import { setCurrentUser } from './store/user/user.action';
-
-import {
-  onAuthStateChangedListener,
-  createUserDocumentFromAuth,
-} from './utils/firebase/firebase.utils';
 
 import Navigation from './routes/navigation/navigation.component';
 import Home from './routes/home/home.component';
@@ -15,18 +9,15 @@ import Shop from './routes/shop/shop.route';
 import Auth from './routes/auth-page/auth-page.route';
 import Checkout from './components/checkout/checkout.component';
 import { ErrorPage } from './routes/error.page.route';
+import { checkUserSession } from './store/user/user.action';
 
 const App = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      // console.log(user);
-      if (user) createUserDocumentFromAuth(user);
 
-      dispatch(setCurrentUser(user));
-    });
-    return unsubscribe;
+  useEffect(() => {
+    dispatch(checkUserSession())
   }, [dispatch]);
+  // also dispath is never changed so we can remove dispatch but for the sake of islint we leave it as it is.
 
   return (
     <Routes>

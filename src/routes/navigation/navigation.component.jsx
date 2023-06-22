@@ -19,6 +19,8 @@ import {
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
+  // it gives us he whole redux store
+  // selectCurrentUSer = state => state.use.currentUser
   const isCartOpen = useSelector(selectIsCartOpen);
 
   return (

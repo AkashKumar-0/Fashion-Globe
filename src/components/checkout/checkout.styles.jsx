@@ -5,7 +5,6 @@ export const CheckoutCtr = styled.div`
   min-height: 90vh;
   display: flex;
   transform: translateY(80px);
-
   flex-direction: column;
   align-items: center;
   margin: 50px auto 0;
