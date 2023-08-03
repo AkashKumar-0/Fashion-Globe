@@ -5,6 +5,7 @@ import FormHelper from '../form-helper/form-helper.component';
 import { SignUpContainer } from './sign-up-form.styles.jsx';
 import Button from '../button/button.component';
 import { signUpStart } from '../../store/user/user.action';
+import { useNavigate } from 'react-router-dom';
 
 const defaultFormFields = {
   displayName: '',
@@ -12,13 +13,14 @@ const defaultFormFields = {
   password: '',
   confirmPssword: '',
 };
+
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPssword } = formFields;
   // console.log(formFields);
 
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
@@ -36,6 +38,7 @@ const SignUpForm = () => {
     try {
       dispatch(signUpStart(email, password, displayName));
       resetFormFields();
+      navigate('/');
     } catch (err) {
       if (err.code === 'auth/email-already-in-use') {
         alert('cannot create user, email already in use');

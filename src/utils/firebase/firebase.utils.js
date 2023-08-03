@@ -73,6 +73,7 @@ export const addCollectionAndDocuments = async (collectionKey, objectToAdd) => {
   await batch.commit();
   console.log('Done');
 };
+
 export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(DB, 'categories');
   const q = query(collectionRef);
@@ -113,7 +114,7 @@ export const createUserDocumentFromAuth = async (
   // console.log("usedocref", userDocRef);
 
   const userSnapshot = await getDoc(userDocRef);
-  console.log('usersnapshot', userSnapshot);
+  // console.log('usersnapshot', userSnapshot);
   // console.log(userSnapshot.exists());
 
   if (!userSnapshot.exists()) {
@@ -130,6 +131,8 @@ export const createUserDocumentFromAuth = async (
         createdAt,
         ...additionalInformation,
       });
+      const userSnapshot = await getDoc(userDocRef);
+      return userSnapshot;
     } catch (error) {
       console.log(
         'error occured while creating databse(from firebase.utils)',
@@ -171,6 +174,7 @@ export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const unsubscribe = onAuthStateChanged(
       auth,
+      //below line is callback
       (userAuth) => {
         unsubscribe();
         resolve(userAuth);

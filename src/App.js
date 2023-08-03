@@ -2,7 +2,6 @@ import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-
 import Navigation from './routes/navigation/navigation.component';
 import Home from './routes/home/home.component';
 import Shop from './routes/shop/shop.route';
@@ -15,7 +14,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(checkUserSession())
+    dispatch(checkUserSession());
   }, [dispatch]);
   // also dispath is never changed so we can remove dispatch but for the sake of islint we leave it as it is.
 

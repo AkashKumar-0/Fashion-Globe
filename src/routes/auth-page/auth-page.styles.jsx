@@ -4,6 +4,9 @@ export const SignPage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  display: flex;
-  justify-content: space-around;
+  gap: 50px;
+  @media screen and (max-width: 1000px) {
+    gap: 100px;
+    flex-direction: column;
+  }
 `;

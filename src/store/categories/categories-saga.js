@@ -8,8 +8,8 @@ import { CATEGORIES_ACTION_TYPES } from './categories.types';
 
 export function* fetchCategoriesAsync() {
   try {
-    const categoryArray = yield call(getCategoriesAndDocuments, 'categories');
-    yield put(fetchCategoriesSuccess(categoryArray));
+    const categoriesArray = yield call(getCategoriesAndDocuments, 'categories');
+    yield put(fetchCategoriesSuccess(categoriesArray));
   } catch (error) {
     yield put(fetchCategoriesFailed(error));
   }
@@ -23,5 +23,5 @@ export function* onFetchCategories() {
 }
 
 export function* categorySaga() {
-  yield all([call(onFetchCategories)]); // its basically  apause to complete this line first then move down
+  yield all([call(onFetchCategories)]); // its basically a pause to complete this line first then move down
 }

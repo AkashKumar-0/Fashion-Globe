@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { SignInContainer, BtnFlex } from './sign-in-form.styles.jsx';
 
 import {
@@ -16,40 +17,37 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
   // console.log(formFields);
 
-  const dispatch = useDispatch();
-
-  const resetFormFields = () => {
-    setFormFields(defaultFormFields);
-    // console.log("reset formfield");
-  };
+  const resetFormFields = () => setFormFields(defaultFormFields);
 
   const signInWithGoogle = async () => dispatch(googleSignInStart());
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      resetFormFields();
       dispatch(emailSignInStart(email, password));
       // console.log("sign in with email and pass -> ", user);
-
+      navigate('/');
       resetFormFields();
     } catch (err) {
-      switch (err.code) {
-        case 'auth/wrong-password':
-          alert("Paaword doesn't match ! try again :)");
-          break;
-        case 'auth/user-not-found':
-          alert('User Not Found');
-          break;
-        default:
-          console.log(err);
-      }
-      console.log('user creation encountered an error', err);
+      // switch (err.code) {
+      //   case 'auth/wrong-password':
+      //     alert("Paaword doesn't match ! try again :)");
+      //     break;
+      //   case 'auth/user-not-found':
+      //     alert('User Not Found');
+      //     break;
+      //   default:
+      //     console.log(err);
+      // }
+      console.log('user sign in failed', err);
     }
   };
   const handleChange = (event) => {
