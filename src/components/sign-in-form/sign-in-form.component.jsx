@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { SignInContainer, BtnFlex } from './sign-in-form.styles.jsx';
 
 import {
   emailSignInStart,
   googleSignInStart,
+  signInFailed,
 } from '../../store/user/user.action';
 
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
@@ -18,7 +18,6 @@ const defaultFormFields = {
 
 const SignInForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
@@ -33,9 +32,8 @@ const SignInForm = () => {
     event.preventDefault();
     try {
       dispatch(emailSignInStart(email, password));
-      // console.log("sign in with email and pass -> ", user);
-      navigate('/');
       resetFormFields();
+      // console.log("sign in with email and pass -> ", user);
     } catch (err) {
       // switch (err.code) {
       //   case 'auth/wrong-password':
@@ -47,7 +45,9 @@ const SignInForm = () => {
       //   default:
       //     console.log(err);
       // }
+
       console.log('user sign in failed', err);
+      dispatch(signInFailed(err));
     }
   };
   const handleChange = (event) => {
