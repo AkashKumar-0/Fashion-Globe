@@ -5,6 +5,8 @@ export const NavContainer = styled.div`
   width: 100%;
   display: flex;
   position: fixed;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
   background-color: transparent;
   z-index: 1000;
   padding: 20px;

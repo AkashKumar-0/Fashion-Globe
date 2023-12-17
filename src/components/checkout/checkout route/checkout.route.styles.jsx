@@ -25,12 +25,14 @@ export const BaseSpan = styled.span`
 
 export const Quantity = styled(BaseSpan)`
   display: flex;
+  // padding: 0 10px;
   // border: 1px solid red;
 `;
 
 export const Arrow = styled.div`
   cursor: pointer;
   // border: 1px solid blue;
+  // padding: 0 10px;
   z-index: 10;
 `;
 

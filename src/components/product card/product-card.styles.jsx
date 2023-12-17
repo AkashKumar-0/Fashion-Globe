@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 export const ProductCardCtr = styled.div`
   width: 80%;
   min-width: 10%;
@@ -41,9 +40,12 @@ export const ProductCardCtr = styled.div`
 
     .carticon {
       display: flex;
-      transition: all 0.5s ease;
+      transition: all 0.2s ease;
       &:hover {
-        transform: scale(1.2);
+        transform: scale(1.07);
+      }
+      &:active {
+        transform: scale(0.9);
       }
     }
   }

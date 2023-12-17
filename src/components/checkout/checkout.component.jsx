@@ -13,6 +13,7 @@ import {
   Total,
   HeaderBlock,
 } from './checkout.styles.jsx';
+import { PaymentForm } from '../payment-form/payment-form.component';
 
 const headerData = [' Product', 'Discription', 'Quantity', 'Price', 'Remove'];
 
@@ -42,7 +43,8 @@ const Checkout = () => {
       {cartData.map((card) => (
         <CheckoutItem key={card.id} card={card} />
       ))}
-      <Total>Total : {cartTotal}</Total>
+      <Total>Total : ${cartTotal}</Total>
+      <PaymentForm />
     </CheckoutCtr>
   );
 };
